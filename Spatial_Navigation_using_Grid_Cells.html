@@ -8880,7 +8880,7 @@ Personal warning: <code>scipy.ndimage.convolve2d</code> doesn't exist, we will u
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
 <div class="jp-InputArea jp-Cell-inputArea">
-<div class="jp-InputPrompt jp-InputArea-prompt">In [35]:</div>
+<div class="jp-InputPrompt jp-InputArea-prompt">In [ ]:</div>
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
 <div class="cm-editor cm-s-jupyter">
 <div class="highlight hl-ipython3"><pre><span></span><span class="n">M</span> <span class="o">=</span> <span class="mi">40</span>
@@ -8973,7 +8973,7 @@ Personal warning: <code>scipy.ndimage.convolve2d</code> doesn't exist, we will u
     <span class="n">bump_y</span><span class="p">[</span><span class="n">t</span><span class="p">]</span> <span class="o">=</span> <span class="n">y</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">+</span> <span class="p">((</span><span class="n">iy_idx</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">+</span> <span class="n">cy</span><span class="p">)</span> <span class="o">%</span> <span class="n">M</span><span class="p">)</span> <span class="o">*</span> <span class="p">(</span><span class="n">y</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">-</span><span class="n">y</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span>
     <span class="n">bump_x</span><span class="p">[</span><span class="n">t</span><span class="p">]</span> <span class="o">=</span> <span class="n">x</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">+</span> <span class="p">((</span><span class="n">ix_idx</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">+</span> <span class="n">cx</span><span class="p">)</span> <span class="o">%</span> <span class="n">M</span><span class="p">)</span> <span class="o">*</span> <span class="p">(</span><span class="n">x</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">-</span><span class="n">x</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span>
 
-<span class="c1"># Polyfit sur fenêtres de 50ms (identique à 1.4)</span>
+<span class="c1"># Polyfit on 50ms windows</span>
 <span class="n">est_times</span> <span class="o">=</span> <span class="p">[</span><span class="mi">390</span><span class="p">,</span> <span class="mi">490</span><span class="p">,</span> <span class="mi">590</span><span class="p">]</span>
 <span class="n">est_vx</span><span class="p">,</span> <span class="n">est_vy</span> <span class="o">=</span> <span class="p">[],</span> <span class="p">[]</span>
 <span class="n">win</span> <span class="o">=</span> <span class="mi">50</span>
@@ -9542,16 +9542,13 @@ $$</p>
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
 <div class="jp-InputArea jp-Cell-inputArea">
-<div class="jp-InputPrompt jp-InputArea-prompt">In [40]:</div>
+<div class="jp-InputPrompt jp-InputArea-prompt">In [ ]:</div>
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
 <div class="cm-editor cm-s-jupyter">
-<div class="highlight hl-ipython3"><pre><span></span><span class="c1"># 3.6 — Velocity estimation with aperiodic boundaries (model 3.4)</span>
-<span class="c1"># e, x, y, X, Y, W_N/S/E/W, M=50 déjà définis dans 3.4</span>
+<div class="highlight hl-ipython3"><pre><span></span><span class="n">speed</span> <span class="o">=</span> <span class="mf">1.0</span>
+<span class="n">n_steps</span> <span class="o">=</span> <span class="mi">700</span>  <span class="c1"># 300ms stabilisation + 4x100ms speed segments</span>
 
-<span class="n">speed</span> <span class="o">=</span> <span class="mf">1.0</span>
-<span class="n">n_steps</span> <span class="o">=</span> <span class="mi">700</span>  <span class="c1"># 300ms stabilisation + 4x100ms vitesse</span>
-
-<span class="c1"># Signal : amplitude fixe, direction change tous les 100ms (droite, haut, gauche, bas)</span>
+<span class="c1"># Signal</span>
 <span class="n">angles</span> <span class="o">=</span> <span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">pi</span><span class="o">/</span><span class="mi">2</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">pi</span><span class="p">,</span> <span class="mi">3</span><span class="o">*</span><span class="n">np</span><span class="o">.</span><span class="n">pi</span><span class="o">/</span><span class="mi">2</span><span class="p">]</span>
 <span class="n">v_x_signal</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">(</span><span class="n">n_steps</span><span class="p">)</span>
 <span class="n">v_y_signal</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">(</span><span class="n">n_steps</span><span class="p">)</span>
@@ -9559,7 +9556,7 @@ $$</p>
     <span class="n">v_x_signal</span><span class="p">[</span><span class="mi">300</span> <span class="o">+</span> <span class="n">i</span><span class="o">*</span><span class="mi">100</span> <span class="p">:</span> <span class="mi">300</span> <span class="o">+</span> <span class="p">(</span><span class="n">i</span><span class="o">+</span><span class="mi">1</span><span class="p">)</span><span class="o">*</span><span class="mi">100</span><span class="p">]</span> <span class="o">=</span> <span class="n">speed</span> <span class="o">*</span> <span class="n">np</span><span class="o">.</span><span class="n">cos</span><span class="p">(</span><span class="n">angle</span><span class="p">)</span>
     <span class="n">v_y_signal</span><span class="p">[</span><span class="mi">300</span> <span class="o">+</span> <span class="n">i</span><span class="o">*</span><span class="mi">100</span> <span class="p">:</span> <span class="mi">300</span> <span class="o">+</span> <span class="p">(</span><span class="n">i</span><span class="o">+</span><span class="mi">1</span><span class="p">)</span><span class="o">*</span><span class="mi">100</span><span class="p">]</span> <span class="o">=</span> <span class="n">speed</span> <span class="o">*</span> <span class="n">np</span><span class="o">.</span><span class="n">sin</span><span class="p">(</span><span class="n">angle</span><span class="p">)</span>
 
-<span class="c1"># Initialisation</span>
+<span class="c1"># Initialization</span>
 <span class="n">rng36</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">default_rng</span><span class="p">(</span><span class="n">seed</span><span class="o">=</span><span class="mi">42</span><span class="p">)</span>
 <span class="n">s_N</span> <span class="o">=</span> <span class="n">rng36</span><span class="o">.</span><span class="n">uniform</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mf">0.1</span><span class="p">,</span> <span class="n">size</span><span class="o">=</span><span class="p">(</span><span class="n">M</span><span class="p">,</span> <span class="n">M</span><span class="p">))</span>
 <span class="n">s_S</span> <span class="o">=</span> <span class="n">rng36</span><span class="o">.</span><span class="n">uniform</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mf">0.1</span><span class="p">,</span> <span class="n">size</span><span class="o">=</span><span class="p">(</span><span class="n">M</span><span class="p">,</span> <span class="n">M</span><span class="p">))</span>
@@ -9567,7 +9564,7 @@ $$</p>
 <span class="n">s_W</span> <span class="o">=</span> <span class="n">rng36</span><span class="o">.</span><span class="n">uniform</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mf">0.1</span><span class="p">,</span> <span class="n">size</span><span class="o">=</span><span class="p">(</span><span class="n">M</span><span class="p">,</span> <span class="n">M</span><span class="p">))</span>
 <span class="n">r_history_tot_36</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">((</span><span class="n">n_steps</span><span class="p">,</span> <span class="n">M</span><span class="p">,</span> <span class="n">M</span><span class="p">))</span>
 
-<span class="c1"># Simulation (identique à 3.4)</span>
+<span class="c1"># Simulation</span>
 <span class="k">for</span> <span class="n">t</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">n_steps</span><span class="p">):</span>
     <span class="n">v_x</span> <span class="o">=</span> <span class="n">v_x_signal</span><span class="p">[</span><span class="n">t</span><span class="p">]</span>
     <span class="n">v_y</span> <span class="o">=</span> <span class="n">v_y_signal</span><span class="p">[</span><span class="n">t</span><span class="p">]</span>
@@ -9592,7 +9589,7 @@ $$</p>
 
     <span class="n">r_history_tot_36</span><span class="p">[</span><span class="n">t</span><span class="p">]</span> <span class="o">=</span> <span class="n">r_N</span> <span class="o">+</span> <span class="n">r_S</span> <span class="o">+</span> <span class="n">r_E</span> <span class="o">+</span> <span class="n">r_W</span>
 
-<span class="c1"># Track bump (argmax, identique à 2.4)</span>
+<span class="c1"># Track bump</span>
 <span class="n">bump_x</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">(</span><span class="mi">400</span><span class="p">)</span>
 <span class="n">bump_y</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">(</span><span class="mi">400</span><span class="p">)</span>
 <span class="k">for</span> <span class="n">t</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">300</span><span class="p">,</span> <span class="mi">700</span><span class="p">):</span>
@@ -9600,7 +9597,7 @@ $$</p>
     <span class="n">bump_y</span><span class="p">[</span><span class="n">t</span><span class="o">-</span><span class="mi">300</span><span class="p">]</span> <span class="o">=</span> <span class="n">y</span><span class="p">[</span><span class="n">idx</span><span class="p">[</span><span class="mi">0</span><span class="p">]]</span>
     <span class="n">bump_x</span><span class="p">[</span><span class="n">t</span><span class="o">-</span><span class="mi">300</span><span class="p">]</span> <span class="o">=</span> <span class="n">x</span><span class="p">[</span><span class="n">idx</span><span class="p">[</span><span class="mi">1</span><span class="p">]]</span>
 
-<span class="c1"># Estimation au milieu de chaque segment de 100ms</span>
+<span class="c1"># Estimation middle of each 100ms segment</span>
 <span class="n">est_times</span> <span class="o">=</span> <span class="p">[</span><span class="mi">350</span><span class="p">,</span> <span class="mi">450</span><span class="p">,</span> <span class="mi">550</span><span class="p">,</span> <span class="mi">650</span><span class="p">]</span>
 <span class="n">est_vx</span><span class="p">,</span> <span class="n">est_vy</span> <span class="o">=</span> <span class="p">[],</span> <span class="p">[]</span>
 <span class="n">win</span> <span class="o">=</span> <span class="mi">50</span>
